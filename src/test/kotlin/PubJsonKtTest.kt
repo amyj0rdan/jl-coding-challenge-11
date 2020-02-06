@@ -40,4 +40,10 @@ internal class PubJsonKtTest {
             )
         )
     }
+
+    @Test
+    fun `can handle empty Json`() {
+        val json = "{\"Pubs\":[]}"
+        assertThat(pubJsonToPubs(json)).isEqualTo(emptyList<Pub>())
+    }
 }
