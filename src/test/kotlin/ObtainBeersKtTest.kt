@@ -58,7 +58,7 @@ internal class ObtainBeersKtTest {
     }
 
     @Test
-    fun `obtainBeers returns list of both regular and guest beers from a list of pubs`() {
+    fun `obtainBeers returns list of both regular and guest beers from a pub`() {
         val pub = Pub(
             "Wetherspoons",
             15953,
@@ -96,5 +96,56 @@ internal class ObtainBeersKtTest {
             )
         )
 
+    }
+
+    @Test
+    fun `obtainListOfBeers return list of beers from a list of pubs`() {
+        val pubs = listOf(
+            Pub(
+                "Wetherspoons",
+                15953,
+                "WLD",
+                "2020-01-20 08:52:53",
+                "someURL",
+                listOf("Fuller's London Pride"),
+                listOf("Sharp's Doom Bar")
+            ),
+            Pub(
+                "Willow Walk",
+                15951,
+                "WLD",
+                "2020-01-03 17:52:05",
+                "anotherURL",
+                listOf("Fuller's London Pride"),
+                listOf("Beavertown Neck Oil")
+            )
+        )
+
+        assertThat(pubs.obtainListOfBeers()).containsExactly(
+            Beer(
+                "Fuller's London Pride",
+                "Wetherspoons",
+                "someURL",
+                true
+            ),
+            Beer(
+                "Sharp's Doom Bar",
+                "Wetherspoons",
+                "someURL",
+                false
+            ),
+            Beer(
+                "Fuller's London Pride",
+                "Willow Walk",
+                "anotherURL",
+                true
+            ),
+            Beer(
+                "Beavertown Neck Oil",
+                "Willow Walk",
+                "anotherURL",
+                false
+            )
+        )
     }
 }
