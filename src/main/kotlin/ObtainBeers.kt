@@ -2,6 +2,10 @@ fun List<Pub>.removeDuplicates() = this
     .sortedByDescending { it.createTS }
     .distinctBy { it.id }
 
+fun Pub.obtainBeers() : List<Beer> {
+    return this.obtainRegularBeers() + this.obtainGuestBeers()
+}
+
 fun Pub.obtainRegularBeers() : List<Beer> {
     return this.regularBeers.map { beerName ->
         Beer(
@@ -14,8 +18,7 @@ fun Pub.obtainRegularBeers() : List<Beer> {
 }
 
 fun Pub.obtainGuestBeers() : List<Beer> {
-    return this.guestBeers.map {
-        beerName ->
+    return this.guestBeers.map { beerName ->
         Beer(
             beerName,
             this.name,
