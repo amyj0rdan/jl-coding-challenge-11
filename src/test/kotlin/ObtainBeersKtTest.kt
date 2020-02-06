@@ -198,4 +198,45 @@ internal class ObtainBeersKtTest {
             )
         )
     }
+
+    @Test
+    fun `obtainListOfBeers removes duplicate pubs and uses latest information for a pub`() {
+        val pubs = listOf(
+            Pub(
+                "Willow Walk",
+                15951,
+                "WLD",
+                "2020-01-03 17:52:05",
+                "anotherURL",
+                listOf("Fuller's London Pride"),
+                listOf("Sharp's Doom Bar")
+            ),
+            Pub(
+                "Willow Walk",
+                15951,
+                "WLD",
+                "2020-02-03 17:52:05",
+                "anotherURL",
+                listOf("Stella Artois"),
+                listOf("Beavertown Neck Oil")
+            )
+        )
+        val beers = pubs.obtainListOfBeers()
+        println(beers)
+        assertThat(beers).containsExactly(
+            Beer(
+                "Stella Artois",
+                "Willow Walk",
+                "anotherURL",
+                true
+            ),
+            Beer(
+                "Beavertown Neck Oil",
+                "Willow Walk",
+                "anotherURL",
+                false
+            )
+        )
+    }
+
 }
