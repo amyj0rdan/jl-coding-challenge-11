@@ -3,27 +3,18 @@ fun List<Pub>.removeDuplicates() = this
     .distinctBy { it.id }
 
 fun Pub.obtainBeers() : List<Beer> {
-    return this.obtainRegularBeers() + this.obtainGuestBeers()
-}
+    val mapOfBeerToRegularOrGuest = (
+            this.regularBeers.map { it to true }
+            ) + (
+            this.guestBeers.map { it to false }
+            )
 
-fun Pub.obtainRegularBeers() : List<Beer> {
-    return this.regularBeers.map { beerName ->
+    return mapOfBeerToRegularOrGuest.map { (beerName, isRegular) ->
         Beer(
             beerName,
             this.name,
             this.pubService,
-            true
-        )
-    }
-}
-
-fun Pub.obtainGuestBeers() : List<Beer> {
-    return this.guestBeers.map { beerName ->
-        Beer(
-            beerName,
-            this.name,
-            this.pubService,
-            false
+            isRegular
         )
     }
 }
