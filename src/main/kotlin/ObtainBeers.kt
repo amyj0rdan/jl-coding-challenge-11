@@ -3,7 +3,9 @@ fun List<Pub>.removeDuplicates() = this
     .distinctBy { it.id }
 
 fun List<Pub>.obtainListOfBeers() : List<Beer> {
-    return this.flatMap { pub ->
+    return this
+        .sortedBy { it.name }
+        .flatMap { pub ->
         pub.obtainBeers()
     }
 }
