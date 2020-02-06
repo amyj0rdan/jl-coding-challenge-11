@@ -84,4 +84,32 @@ internal class ObtainBeersKtTest {
             )
         )
     }
+
+    @Test
+    fun `obtainGuestBeers returns list of guest beers available from a pub`() {
+        val pub = Pub(
+            "Wetherspoons",
+            15953,
+            "WLD",
+            "2020-01-20 08:52:53",
+            "someURL",
+            emptyList(),
+            listOf("Fuller's London Pride", "Greene King IPA")
+        )
+
+        assertThat(pub.obtainGuestBeers()).containsExactly(
+            Beer(
+                "Fuller's London Pride",
+                "Wetherspoons",
+                "someURL",
+                false
+            ),
+            Beer(
+                "Greene King IPA",
+                "Wetherspoons",
+                "someURL",
+                false
+            )
+        )
+    }
 }

@@ -12,3 +12,15 @@ fun Pub.obtainRegularBeers() : List<Beer> {
         )
     }
 }
+
+fun Pub.obtainGuestBeers() : List<Beer> {
+    return this.guestBeers.map {
+        beerName ->
+        Beer(
+            beerName,
+            this.name,
+            this.pubService,
+            false
+        )
+    }
+}
