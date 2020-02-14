@@ -10,3 +10,7 @@ For example:
 
 ##To run tests
 ```./gradlew build```
+
+##Some additional things to do
+- No args given
+- Handle error from API
