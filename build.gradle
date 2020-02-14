@@ -12,10 +12,14 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
+    implementation "org.http4k:http4k-core:3.187.0"
+    implementation "org.http4k:http4k-server-jetty:3.187.0"
+    implementation "org.http4k:http4k-client-apache:3.187.0"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.5.0"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.5.0"
     testImplementation "com.willowtreeapps.assertk:assertk-jvm:0.20"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
 }
 
 compileKotlin {
