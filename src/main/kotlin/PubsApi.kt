@@ -8,8 +8,8 @@ class PubsApi(private val baseUrl: String, val client: HttpHandler = ApacheClien
         val response = client(
             Request(Method.GET, baseUrl)
                 .query("uId", uId)
-                .query("lng", lat)
-                .query("lat", lng)
+                .query("lng", lng)
+                .query("lat", lat)
                 .query("deg", deg))
 
         return responseConverter(response.bodyString())
